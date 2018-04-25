@@ -2,7 +2,6 @@
 var app = app || {};
 (function (module) {
   var bookView = {};
-
   bookView.handleMainNav = () => {
     $('.main-nav').on('click', '.tab', function (e) {
       e.preventDefault();
@@ -66,38 +65,34 @@ var app = app || {};
       body: $('#book-body').val(),
       publishedOn: new Date().toISOString()
     });
-
-    book.insertRecord();
-
-    // REVIEW: The following line of code redirects the user back to the home page after submitting the form.
-    //   window.location = '../';
-    // }
-
-    bookView.initIndexPage = () => {
-      app.Book.all.forEach(a => $('#books').append(a.toHtml()));
-
-      bookView.populateFilters();
-      bookView.handleCategoryFilter();
-      bookView.handleAuthorFilter();
-      bookView.handleMainNav();
-      bookView.setTeasers();
-      $('pre code').each((i, block) => hljs.highlightBlock(block));
-    };
-
-    bookView.initAdminPage = () => {
-      let template = Handlebars.compile($('#author-stats').text());
-      // REVIEW: We use .forEach() here because we are relying on the side-effects of the callback function: appending to the DOM. The callback is not required to return anything.
-      app.book.numWordsByAuthor().forEach(stat => {
-        console.log(stat);
-        //console.log($('.author-stats').append(template(stat)))
-        return $('.author-stats').append(template(stat));
-      });
-
-
-      // REVIEW: Simply write the correct values to the page:
-      $('#blog-stats .books').text(app.book.all.length);
-      $('#blog-stats .words').text(app.book.numWordsAll());
-    };
   };
+
+  // book.insertRecord();
+
+  bookView.initIndexPage = () => {
+    // hide class container
+    // show class book-view
+    app.Book.all.forEach(a => $('#books').append(a.toHtml()));
+    bookView.handleMainNav();
+    bookView.setTeasers();
+    console.log('in the book view');
+    $('pre code').each((i, block) => hljs.highlightBlock(block));
+  };
+
+  // bookView.initAdminPage = () => {
+  //   let template = Handlebars.compile($('#author-stats').text());
+  //   app.book.numWordsByAuthor().forEach(stat => {
+  //     console.log(stat);
+  //     return $('.author-stats').append(template(stat));
+  //   });
+
+  //   $('#blog-stats .books').text(app.book.all.length);
+  //   $('#blog-stats .words').text(app.book.numWordsAll());
+  // };
+
   module.bookView = bookView;
 })(app);
+
+$(document).ready(function () {
+  app.Book.fetchAll(app.bookView.initIndexPage);
+});
