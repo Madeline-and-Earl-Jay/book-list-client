@@ -75,7 +75,6 @@ var app = app || {};
     app.Book.all.forEach(a => $('#books').append(a.toHtml()));
     bookView.handleMainNav();
     bookView.setTeasers();
-    console.log('in the book view');
     $('pre code').each((i, block) => hljs.highlightBlock(block));
   };
 

@@ -8,5 +8,8 @@
     var template = Handlebars.compile($('#error-template').text());
     $('#error-message').append(template);
   };
+  errorView.errorCallback = err =>{
+    console.error(err);
+  };
   module.errorView = errorView;
 })(app);
