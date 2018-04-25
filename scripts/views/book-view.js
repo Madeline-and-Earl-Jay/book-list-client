@@ -5,7 +5,7 @@ var app = app || {};
   bookView.handleMainNav = () => {
     $('.main-nav').on('click', '.tab', function (e) {
       e.preventDefault();
-      $('.tab-content').hide();
+      $('.container').hide();
       $(`#${$(this).data('content')}`).fadeIn();
     });
 
@@ -30,7 +30,7 @@ var app = app || {};
   };
 
   bookView.initNewbookPage = () => {
-    $('.tab-content').show();
+    $('.container').show();
     $('#export-field').hide();
     $('#book-json').on('focus', function () {
       this.select();
@@ -67,7 +67,7 @@ var app = app || {};
     });
   };
 
-  // book.insertRecord();
+  // book.insertNewBook();
 
   bookView.initIndexPage = () => {
     // hide class container
@@ -78,17 +78,6 @@ var app = app || {};
     console.log('in the book view');
     $('pre code').each((i, block) => hljs.highlightBlock(block));
   };
-
-  // bookView.initAdminPage = () => {
-  //   let template = Handlebars.compile($('#author-stats').text());
-  //   app.book.numWordsByAuthor().forEach(stat => {
-  //     console.log(stat);
-  //     return $('.author-stats').append(template(stat));
-  //   });
-
-  //   $('#blog-stats .books').text(app.book.all.length);
-  //   $('#blog-stats .words').text(app.book.numWordsAll());
-  // };
 
   module.bookView = bookView;
 })(app);

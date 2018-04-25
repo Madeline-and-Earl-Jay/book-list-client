@@ -16,11 +16,16 @@
       <a href="#" class="view-details">view details &rarr;</a>
     </article>
   </script>
+  <script id="error-template" type="text/x-handlebars-template">
+        <h2>{{err}}</h2>
+  </script>
 </head>
 
 <body>
-  <section id="books" class="tab-content">
-  </section>
+  <section id="books" class="container"></section>
+  <section id="about" class="container"></section>
+  <section id="error-message" class="container error-view"></section>
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <script src="scripts/models/book.js"></script>
