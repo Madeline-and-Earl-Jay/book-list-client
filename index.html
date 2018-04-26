@@ -3,11 +3,38 @@
 
 <head>
   <title>Book App</title>
+  <script id="book-template" type="text/x-handlebars-template">
+    <article class="clearfix" data-author="{{author}}">
+      <header>
+        <img src="{{image_url}}">
+        <h2>{{title}}</h2>
+        <div class="byline">
+          <h3>{{author}}</h3>
+        </div>
+      </header>
+      <section class="book-body">{{description}}</section>
+      <a href="#" class="view-details">view details</a>
+    </article>
+  </script>
+  <script id="error-template" type="text/x-handlebars-template">
+        <h2>{{err}}</h2>
+  </script>
 </head>
 
 <body>
-  <p>Proof of life!</p>
+  <section id="books" class="container"></section>
+  <section id="about" class="container"></section>
+  <section id="error-message" class="container error-view"></section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <script src="scripts/models/book.js"></script>
+  <script src="scripts/views/book-view.js"></script>
+  <script src="scripts/views/routes.js"></script>
+
+  <!-- <script>app.Book.fetchAll(app.bookView.initIndexPage);</script> -->
+
 </body>
 
 </html>
