@@ -71,7 +71,10 @@ var app = app || {};
 
   bookView.initIndexPage = () => {
     // hide class container
+    $('.container').empty();
     // show class book-view
+    $('.container').empty();
+
     app.Book.all.forEach(a => $('#books').append(a.toHtml()));
     bookView.handleMainNav();
     bookView.setTeasers();
