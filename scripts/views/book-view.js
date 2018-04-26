@@ -12,22 +12,43 @@ var app = app || {};
     $('.main-nav .tab:first').click();
   };
 
-  bookView.setTeasers = () => {
-    $('.book-body *:nth-of-type(n+2)').hide();
-    $('book').on('click', 'a.view-details', function (e) {
-      e.preventDefault();
-      if ($(this).text() === 'view details') {
-        $(this).parent().find('*').fadeIn();
-        $(this).html('hide details');
-      } else {
-        $('body').animate({
-          scrollTop: ($(this).parent().offset().top)
-        }, 200);
-        $(this).html('view details');
-        $(this).parent().find('.book-body *:nth-of-type(n+2)').hide();
-      }
-    });
+  function show(section) {
+    $('section').not(`#${section}`).hide();
+    $(`#${section}`).show();
+  }
+
+  /* come back to this later */
+  bookView.viewDetails = (ctx) => {
+    //hide everything else
+    console.log(ctx)
+
+    $('#individual-book').empty();
+    show(ctx);
+    //show only this books data
+    console.log('inside view details');
   };
+  $('.view-details').on('click', bookView.viewDetails);
+
+  // bookView.setTeasers = () => {
+  //   $('.book-description').hide();
+  //   $('.view-details').on('click', function (e) {
+  //     e.preventDefault();
+  //     // $('body').hide();
+  //     // console.log($(this).parent());
+  //     // $(this).show();
+  //     console.log('inside');
+  //     if ($(this).text() === 'view details') {
+  //       $(this).parent().find('*').fadeIn();
+  //       // $(this).html('hide details');
+  //     } else {
+  //       $('body').animate({
+  //         scrollTop: ($(this).parent().offset().top)
+  //       }, 200);
+  //       $(this).html('view details');
+  //       $(this).parent().find('.book-description *:nth-of-type(n+2)').hide();
+  //     }
+  //   });
+  // };
 
   bookView.initNewbookPage = () => {
     $('.container').show();
@@ -73,17 +94,24 @@ var app = app || {};
     // hide class container
     $('.container').empty();
     // show class book-view
+    // $('form').hide();
     $('.container').empty();
-
+    $('.book-description').hide();
     app.Book.all.forEach(a => $('#books').append(a.toHtml()));
     bookView.handleMainNav();
-    bookView.setTeasers();
+    // bookView.setTeasers();
     $('pre code').each((i, block) => hljs.highlightBlock(block));
   };
 
+  bookView.initBookPage = function (ctx) {
+    $('#book').empty();
+    show('book');
+
+    $('#book').append(ctx.book.detailtoHtml());
+  };
   module.bookView = bookView;
 })(app);
 
-$(document).ready(function () {
-  app.Book.fetchAll(app.bookView.initIndexPage);
-});
+// $(document).ready(function () {
+//   app.Book.fetchAll(app.bookView.initIndexPage);
+// });

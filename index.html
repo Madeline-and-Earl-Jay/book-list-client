@@ -2,17 +2,22 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/icons.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/modules.css">
   <title>Book App</title>
   <script id="book-template" type="text/x-handlebars-template">
-    <article class="clearfix" data-author="{{author}}">
+    <article class="clearfix" id={{book_id}} data-author="{{author}}">
       <header>
         <img src="{{image_url}}">
         <h2>{{title}}</h2>
         <div class="byline">
-          <h3>{{author}}</h3>
+          <span>{{author}}</span>
         </div>
       </header>
-      <section class="book-body">{{description}}</section>
+      <section class="book-description">{{description}}</section>
       <a href="#" class="view-details">view details</a>
     </article>
   </script>
@@ -22,8 +27,20 @@
 </head>
 
 <body>
+  <nav>
+    <a href="/book/1">Admin Add or Delete</a>
+  </nav>
+  <form>
+    <p>add a new book</p>
+    <input type="text" placeholder="title" id="title">
+    <input type="text" placeholder="author" id="author">
+    <input type="text" placeholder="isbn" id="isbn">
+    <input type="text" placeholder="image url" id="image_url">
+    <input type="text" placeholder="description..." id="description">
+    <button type="submit">submit</button>
+  </form>
   <section id="books" class="container"></section>
-  <section id="about" class="container"></section>
+  <section id="individual-book" class="container"> </section>
   <section id="error-message" class="container error-view"></section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

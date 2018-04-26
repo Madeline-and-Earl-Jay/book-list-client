@@ -34,6 +34,16 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       .then(Book.loadAll)
       .then(callback)
       .catch(errorCallback);
+    console.log('inside fetchAll');
   };
+
+  Book.fetchOne = (callback, ctx) => {
+    $.get(`${ENV.apiUrl}/api/v1/books/${ctx.params.id}`)
+      .then(results => console.log(results))
+      .then(callback(ctx))
+      .catch(errorCallback);
+    console.log('inside fetchOne');
+  };
+
   module.Book = Book;
 })(app);
