@@ -17,13 +17,27 @@
           <span>{{author}}</span>
         </div>
       </header>
-      <section class="book-description">{{description}}</section>
-      <a href="#" class="view-details">view details</a>
+      <header>
+        <img src="{{image_url}}">
+        <h2>{{title}}</h2>
+        <div class="byline">
+          <span>{{author}}</span>
+        </div>
+      </header>
+      
+      <a href="/book/1" class="view-details">view details</a>
     </article>
   </script>
   <script id="error-template" type="text/x-handlebars-template">
-        <h2>{{err}}</h2>
+    <h2>{{err}}</h2>
   </script>
+  <script type="text/x-handlebars-template" id="book-detail-template">
+    <h2>{{title}}</h2>
+    <h2>{{author}}</h2>
+    <h2>{{isbn}}</h2>
+    <img src="{{image_url}}"></img>
+    <section class="book-description">{{description}}</section>    
+</script>
 </head>
 
 <body>

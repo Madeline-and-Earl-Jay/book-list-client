@@ -20,7 +20,7 @@ var app = app || {};
   /* come back to this later */
   bookView.viewDetails = (ctx) => {
     //hide everything else
-    console.log(ctx)
+    console.log(ctx);
 
     $('#individual-book').empty();
     show(ctx);
@@ -28,27 +28,6 @@ var app = app || {};
     console.log('inside view details');
   };
   $('.view-details').on('click', bookView.viewDetails);
-
-  // bookView.setTeasers = () => {
-  //   $('.book-description').hide();
-  //   $('.view-details').on('click', function (e) {
-  //     e.preventDefault();
-  //     // $('body').hide();
-  //     // console.log($(this).parent());
-  //     // $(this).show();
-  //     console.log('inside');
-  //     if ($(this).text() === 'view details') {
-  //       $(this).parent().find('*').fadeIn();
-  //       // $(this).html('hide details');
-  //     } else {
-  //       $('body').animate({
-  //         scrollTop: ($(this).parent().offset().top)
-  //       }, 200);
-  //       $(this).html('view details');
-  //       $(this).parent().find('.book-description *:nth-of-type(n+2)').hide();
-  //     }
-  //   });
-  // };
 
   bookView.initNewbookPage = () => {
     $('.container').show();
@@ -88,7 +67,6 @@ var app = app || {};
     });
   };
 
-  // book.insertNewBook();
 
   bookView.initIndexPage = () => {
     // hide class container
@@ -104,14 +82,14 @@ var app = app || {};
   };
 
   bookView.initBookPage = function (ctx) {
-    $('#book').empty();
-    show('book');
-
-    $('#book').append(ctx.book.detailtoHtml());
+    console.log('initbookpage', ctx);
+    $('#books').empty();
+    show('books');
+    ctx.book = app.Book.all.forEach(books => {
+      if(parseInt(books.book_id) === parseInt(ctx.params.id)){
+        $('#books').append(books.detailToHtml());
+      }
+    });
   };
   module.bookView = bookView;
 })(app);
-
-// $(document).ready(function () {
-//   app.Book.fetchAll(app.bookView.initIndexPage);
-// });

@@ -27,6 +27,11 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     return template(this);
   };
 
+  Book.prototype.detailToHtml = function (){
+    let template = Handlebars.compile($('#book-detail-template').text());
+    return template(this);
+  };
+
   Book.loadAll = rows => Book.all = rows.sort((a, b) => b.title - a.title).map(book => new Book(book));
 
   Book.fetchAll = callback => {
@@ -39,7 +44,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
   Book.fetchOne = (callback, ctx) => {
     $.get(`${ENV.apiUrl}/api/v1/books/${ctx.params.id}`)
-      .then(results => console.log(results))
+      .then(results => console.log('fetchOne', results))
+      .then(results => new Book(results))
       .then(callback(ctx))
       .catch(errorCallback);
     console.log('inside fetchOne');
