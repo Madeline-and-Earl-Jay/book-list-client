@@ -11,48 +11,48 @@
   <script id="book-template" type="text/x-handlebars-template">
     <article class="clearfix" id={{book_id}} data-author="{{author}}">
       <header>
-        <img src="{{image_url}}">
-        <h2>{{title}}</h2>
-        <div class="byline">
-          <span>{{author}}</span>
+        <div class="book-img-container">
+          <img src="{{image_url}}">
         </div>
-      </header>
-      <header>
-        <img src="{{image_url}}">
-        <h2>{{title}}</h2>
-        <div class="byline">
-          <span>{{author}}</span>
+        <div class="dark-bg">
+         <h2>{{title}}</h2>
+        <span>{{author}}</span>
+      <a href="/book/{{book_id}}" class="view-details"><button>view details</button></a> 
         </div>
-      </header>
-      
-      <a href="/book/1" class="view-details">view details</a>
     </article>
   </script>
   <script id="error-template" type="text/x-handlebars-template">
     <h2>{{err}}</h2>
   </script>
   <script type="text/x-handlebars-template" id="book-detail-template">
+    <div class="book-img-container">
+      <div class="dark-bg">
     <h2>{{title}}</h2>
     <h2>{{author}}</h2>
     <h2>{{isbn}}</h2>
     <img src="{{image_url}}"></img>
-    <section class="book-description">{{description}}</section>    
+    <section class="book-description">{{description}}</section>   
+    </div> 
+  </div>
 </script>
 </head>
 
 <body>
   <nav>
-    <a href="/book/1">Admin Add or Delete</a>
+    <a href="/add">Admin Add or Delete</a>
+    <a href="/">Home</a>
   </nav>
-  <form>
-    <p>add a new book</p>
-    <input type="text" placeholder="title" id="title">
-    <input type="text" placeholder="author" id="author">
-    <input type="text" placeholder="isbn" id="isbn">
-    <input type="text" placeholder="image url" id="image_url">
-    <input type="text" placeholder="description..." id="description">
-    <button type="submit">submit</button>
-  </form>
+  <section id="add" class="container">
+    <form>
+      <p>add a new book</p>
+      <input type="text" placeholder="title" id="title">
+      <input type="text" placeholder="author" id="author">
+      <input type="text" placeholder="isbn" id="isbn">
+      <input type="text" placeholder="image url" id="image_url">
+      <input type="text" placeholder="description..." id="description">
+      <button type="submit">submit</button>
+    </form>
+  </section>
   <section id="books" class="container"></section>
   <section id="individual-book" class="container"> </section>
   <section id="error-message" class="container error-view"></section>

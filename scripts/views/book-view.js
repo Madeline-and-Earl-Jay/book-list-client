@@ -72,7 +72,7 @@ var app = app || {};
     // hide class container
     $('.container').empty();
     // show class book-view
-    // $('form').hide();
+    $('#add').empty();
     $('.container').empty();
     $('.book-description').hide();
     app.Book.all.forEach(a => $('#books').append(a.toHtml()));
@@ -86,10 +86,29 @@ var app = app || {};
     $('#books').empty();
     show('books');
     ctx.book = app.Book.all.forEach(books => {
-      if(parseInt(books.book_id) === parseInt(ctx.params.id)){
+      if (parseInt(books.book_id) === parseInt(ctx.params.id)) {
         $('#books').append(books.detailToHtml());
       }
     });
   };
+
+  bookView.initAddPage = function (ctx) {
+    $('.container').empty();
+    show('add');
+    app.Book.all.forEach(book => {
+      if (parseInt(book.id) === parseInt(ctx.params.id)) {
+        $('#add').append(book.detailToHtml());
+      }
+    });
+  };
+
+  $('#add form').on('submit', createNewBook);
+  function createNewBook(event) {
+    event.preventDefault();
+    let book = {
+      book: event.target.task.value
+    };
+    app.Book.add();
+  }
   module.bookView = bookView;
 })(app);

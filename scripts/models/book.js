@@ -27,7 +27,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     return template(this);
   };
 
-  Book.prototype.detailToHtml = function (){
+  Book.prototype.detailToHtml = function () {
     let template = Handlebars.compile($('#book-detail-template').text());
     return template(this);
   };
@@ -49,6 +49,12 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       .then(callback(ctx))
       .catch(errorCallback);
     console.log('inside fetchOne');
+  };
+
+  Book.add = book => {
+    $.post(`${ENV.apiUrl}/books/add`, book)
+      .then(() => page('/')
+        .catch(errorCallback));
   };
 
   module.Book = Book;

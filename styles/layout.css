@@ -1,0 +1,18 @@
+article {
+  margin: 4em 0;
+  /* float:left;
+  position:relative; */
+  max-width:540px;
+}
+
+.dark-bg {
+  background: rgb(71, 71, 71);
+  padding: 1em;
+  color:#eee;
+}
+
+.book-img-container {
+  text-align: center;
+  background: #ccc;
+  padding:1em;
+}
