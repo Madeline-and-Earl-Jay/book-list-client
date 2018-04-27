@@ -14,7 +14,7 @@
         <div class="book-img-container">
           <img src="{{image_url}}">
         </div>
-        <div class="dark-bg">
+        <div class="info-section">
          <h2>{{title}}</h2>
         <span>{{author}}</span>
       <a href="/book/{{book_id}}" class="view-details"><button>view details</button></a> 
@@ -25,15 +25,15 @@
     <h2>{{err}}</h2>
   </script>
   <script type="text/x-handlebars-template" id="book-detail-template">
-    <div class="book-img-container">
-      <div class="dark-bg">
-    <h2>{{title}}</h2>
-    <h2>{{author}}</h2>
-    <h2>{{isbn}}</h2>
-    <img src="{{image_url}}"></img>
+    <div class="left-detail">
+      <h2>{{title}}</h2>
+      <h2>{{author}}</h2>
+      <h2>{{isbn}}</h2>
+    </div>
+    <div class="img-detail">
+      <img src="{{image_url}}"/>
+    </div>
     <section class="book-description">{{description}}</section>   
-    </div> 
-  </div>
 </script>
 </head>
 
